@@ -1,0 +1,25 @@
+{
+  "name": "diy-stress-test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "dependencies": {
+    "webdriverio": "^5.4.8"
+  },
+  "devDependencies": {
+    "@wdio/cli": "^5.4.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gizra/diy-stress-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Gizra/diy-stress-test/issues"
+  },
+  "homepage": "https://github.com/Gizra/diy-stress-test#readme"
+}

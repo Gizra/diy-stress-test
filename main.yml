@@ -1,0 +1,52 @@
+- name: WDIO-based stress test
+  hosts: all
+  remote_user: root
+
+  tasks:
+    - name: Update and upgrade apt packages
+      become: true
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 86400
+
+    - name: WDIO and Chrome dependencies
+      package:
+        name: "{{ item }}"
+        state: present
+      with_items:
+         - nodejs
+         - npm
+         - libxss1
+         - libappindicator1
+         - libindicator7
+         - openjdk-8-jre
+
+    - name: Download Chrome
+      get_url:
+        url: "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
+        dest: "/tmp/chrome.deb"
+
+    - name: Install Chrome
+      shell: "apt install -y /tmp/chrome.deb"
+
+    - name: Sync the source code of the WDIO test
+      copy:
+        src: "wdio"
+        dest: "/root/"
+
+    - name: Install WDIO
+      shell: "cd /root/wdio && npm install"
+
+    - name: Start date
+      debug:
+        var=ansible_date_time.iso8601
+
+    - name: Execute
+      shell: "cd /root/wdio && export SESSION_INDEX={{ play_hosts.index(inventory_hostname) }} && ./node_modules/.bin/wdio wdio.conf.js --spec specs/visitor.js"
+      async: 7200
+      poll: 30
+
+    - name: End date
+      debug:
+        var=ansible_date_time.iso8601
