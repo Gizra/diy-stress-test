@@ -39,6 +39,7 @@ done
 echo "The SSH servers became available"
 
 echo "Execute the playbook"
+export ANSIBLE_HOST_KEY_CHECKING=false
 ansible-playbook -e 'ansible_python_interpreter=/usr/bin/python3' -T 300 -i hosts main.yml
 
 echo "Cleanup the created linodes."
