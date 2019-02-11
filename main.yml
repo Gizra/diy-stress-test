@@ -43,7 +43,7 @@
         var=ansible_date_time.iso8601
 
     - name: Execute
-      shell: "cd /root/wdio && export SESSION_INDEX={{ play_hosts.index(inventory_hostname) }} && ./node_modules/.bin/wdio wdio.conf.js --spec specs/visitor.js"
+      shell: "cd /root/wdio && ./node_modules/.bin/wdio wdio.conf.js --spec specs/stream.js"
       async: 7200
       poll: 30
 

@@ -1,7 +1,7 @@
 const assert = require('assert');
 
-describe('homepage', () => {
-    it('should have the right title', () => {
+describe('podcasts', () => {
+    it('should be streamable', () => {
         browser.url('/');
         $('.contact .btn').click();
 
