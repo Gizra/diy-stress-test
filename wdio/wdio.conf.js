@@ -52,9 +52,14 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 1,
         browserName: 'chrome',
-        'chrome:browserOptions': {
+        chromeOptions: {
           binary: '/usr/bin/google-chrome-stable',
-          args: ['headless', 'disable-gpu', 'disable-dev-shm-usage', 'no-sandbox']
+          args: [
+            '--headless',
+            '--disable-gpu',
+            '--disable-dev-shm-usage',
+            '--no-sandbox',
+          ]
         },
     }],
     //
@@ -93,7 +98,6 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['selenium-standalone'],
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
     // see also: https://webdriver.io/docs/frameworks.html
@@ -101,6 +105,8 @@ exports.config = {
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
     framework: 'mocha',
+    port: 9515,
+    path: '/',
     //
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
