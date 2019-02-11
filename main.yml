@@ -38,7 +38,7 @@
 
     - name: Extract Chromedriver
       unarchive:
-        src: "/tmp/chromedriver.zip"
+        remote_src: "/tmp/chromedriver.zip"
         dest: "/tmp"
 
     - name: Start Chromedriver
