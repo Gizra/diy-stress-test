@@ -15,6 +15,7 @@
         name: "{{ item }}"
         state: present
       with_items:
+         - unzip
          - nodejs
          - npm
          - libxss1
@@ -33,12 +34,12 @@
     - name: Get Chromedriver
       get_url:
         url: "https://chromedriver.storage.googleapis.com/73.0.3683.20/chromedriver_linux64.zip"
-        dest: "/tmp/chromedriver"
+        dest: "/tmp/chromedriver.zip"
 
-    - name: Make Chromedriver executable
-      file:
-        dest: "/tmp/chromedriver"
-        mode: "a+x"
+    - name: Extract Chromedriver
+      unarchive:
+        src: "/tmp/chromedriver.zip"
+        dest: "/tmp"
 
     - name: Start Chromedriver
       shell: "nohup /tmp/chromedriver &"
