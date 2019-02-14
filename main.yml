@@ -58,9 +58,7 @@
         var=ansible_date_time.iso8601
 
     - name: Execute
-      shell: "cd /root/wdio && ./node_modules/.bin/wdio wdio.conf.js --spec specs/stream.js"
-      async: 7200
-      poll: 30
+      shell: 'cd /root/wdio && ./node_modules/.bin/wdio wdio.conf.js --spec specs/stream.js'
 
     - name: End date
       debug:
